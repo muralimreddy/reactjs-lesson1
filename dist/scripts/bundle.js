@@ -37866,6 +37866,21 @@ module.exports = {
 var React = require('react');
 
 var About = React.createClass({displayName: "About",
+    statics: {
+        willTransitionTo: function(transition, params, query, callback){
+            if(!confirm('Are you sure you read a page that\'s this boring?')){
+                transition.abort();
+            }else{
+                callback();
+            }
+        },
+        
+        willTransitionFrom: function(transition, component){
+            if(!confirm('Are you sure you leave a page that\'s this exciting?')){
+                transition.abort();
+            }
+        }        
+    },
    render: function(){
        return (
            React.createElement("div", null, 
@@ -38042,11 +38057,15 @@ var DefaultRoute = Router.DefaultRoute;
 
 var Route = Router.Route;
 
+//Redirect old urls to new urls
+var Redirect = Router.Redirect;
+
 var routes = (
     React.createElement(Route, {name: "app", path: "/", handler: require('./components/app')}, 
         React.createElement(DefaultRoute, {handler: require('./components/homePage')}), 
         React.createElement(Route, {name: "authors", handler: require('./components/authors/authorPage')}), 
-        React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')})
+        React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')}), 
+        React.createElement(Redirect, {from: "about-us", to: "about"})
     )
 );
                                        
