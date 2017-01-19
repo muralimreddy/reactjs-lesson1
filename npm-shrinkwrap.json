@@ -3495,6 +3495,11 @@
         }
       }
     },
+    "toastr": {
+      "version": "2.1.2",
+      "from": "toastr@latest",
+      "resolved": "https://registry.npmjs.org/toastr/-/toastr-2.1.2.tgz"
+    },
     "tsscmp": {
       "version": "1.0.5",
       "from": "tsscmp@1.0.5",
